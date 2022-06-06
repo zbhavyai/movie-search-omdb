@@ -22,8 +22,6 @@ const Movies = (props) => {
   url = props['searchTerm']['year'] === undefined || props['searchTerm']['year'] === '' ? url : url + '&y=' + props['searchTerm']['year'];
   url = props['searchTerm']['page'] === undefined || props['searchTerm']['page'] === '' ? url : url + '&page=' + props['searchTerm']['page'];
 
-  console.log(url);
-
   const { data } = useFetch(url);
 
   return (

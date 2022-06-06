@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MovieCard = ({ Poster: poster, Title: title, Year: year }) => {
+const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type }) => {
   let defaultPoster = `${process.env.PUBLIC_URL + '/no-poster.jpg'}`;
 
   // overwrite poster if 'N/A'
@@ -26,6 +26,9 @@ const MovieCard = ({ Poster: poster, Title: title, Year: year }) => {
             {title}
           </h6>
           <p className='card-text'>{year}</p>
+          <button type='button' className='btn btn-sm btn-secondary'>
+            {type}
+          </button>
         </div>
       </div>
     </div>
