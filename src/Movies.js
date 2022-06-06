@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieCard from './MovieCard';
+import PageNum from './PageNum';
 import { useFetch } from './useFetch';
 
 const Movies = (props) => {
@@ -27,26 +28,35 @@ const Movies = (props) => {
 
   return (
     <React.Fragment>
-      {isSearch === false ? (
-        <div className='card mt-4'>
-          <div className='card-body'>
-            <div className='text-secondary pt-2 text-centerr'>Hit search to get some results</div>
-          </div>
+      <div className='row'>
+        <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
+          {isSearch === false ? (
+            <div className='card mt-4'>
+              <div className='card-body'>
+                <div className='text-secondary pt-2 text-centerr'>Hit search to get some results</div>
+              </div>
+            </div>
+          ) : data['Response'] !== 'True' ? (
+            <div className='card mt-4'>
+              <div className='card-body'>
+                <div className='text-secondary pt-2 text-centerr'>{data['Error']}</div>
+              </div>
+            </div>
+          ) : (
+            <div className='row p-5'>
+              {data['Search']?.map((dataItem) => {
+                return <MovieCard key={dataItem['imdbID']} {...dataItem} />;
+              })}
+            </div>
+          )}
         </div>
-      ) : data['Response'] !== 'True' ? (
-        <div className='card mt-4'>
-          <div className='card-body'>
-            <div className='text-secondary pt-2 text-centerr'>{data['Error']}</div>
-          </div>
+      </div>
+
+      <div className='row'>
+        <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
+          <PageNum setSearchTerm={props['setSearchTerm']} searchTerm={props['searchTerm']} totalResults={data['totalResults']} />
         </div>
-      ) : (
-        <div className='row p-5'>
-          {props['setTotalPages'](data['totalResults']) &&
-            data['Search']?.map((dataItem) => {
-              return <MovieCard key={dataItem['imdbID']} {...dataItem} />;
-            })}
-        </div>
-      )}
+      </div>
     </React.Fragment>
   );
 };

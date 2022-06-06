@@ -1,7 +1,7 @@
 import React from 'react';
 
 const PageNum = (props) => {
-  const n = Math.ceil(props['totalResults'] / 10);
+  const n = props['totalResults'] === undefined ? 1 : Math.ceil(props['totalResults'] / 10);
 
   const handleUpdatePage = (e) => {
     props.setSearchTerm({ ...props['searchTerm'], page: e.target.value });
