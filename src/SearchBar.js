@@ -22,7 +22,7 @@ const SearchBar = (props) => {
       window.alert('Search title is mandatory');
     }
 
-    props.func({
+    props.setSearchTerm({
       title: searchTitle,
       type: searchType,
       year: searchYear,
@@ -36,7 +36,7 @@ const SearchBar = (props) => {
   };
 
   return (
-    <div className='row'>
+    <div className='row pt-5'>
       <div className='col-lg-12'>
         <div className='card'>
           <div className='card-body'>
@@ -44,22 +44,14 @@ const SearchBar = (props) => {
               <div className='col-lg-5'>
                 <div className='input-group mb-3'>
                   <span className='input-group-text'>Title</span>
-                  <input
-                    type='text'
-                    className='form-control'
-                    id='filterTitle'
-                    placeholder='Batman'
-                    onChange={(e) => handleSearchTitle(e)}
-                    value={searchTitle}
-                    onKeyDown={(e) => triggerSearchOnEnter(e)}
-                  />
+                  <input type='text' className='form-control' id='filterTitle' onChange={(e) => handleSearchTitle(e)} value={searchTitle} onKeyDown={(e) => triggerSearchOnEnter(e)} />
                 </div>
               </div>
 
               <div className='col-lg-3'>
                 <div className='input-group mb-3'>
                   <span className='input-group-text'>Year</span>
-                  <input type='number' className='form-control' id='filterYear' placeholder='2022' min='1600' maxLength='250' onChange={(e) => handleSearchYear(e)} value={searchYear} />
+                  <input type='number' className='form-control' id='filterYear' min='1600' maxLength='250' onChange={(e) => handleSearchYear(e)} value={searchYear} />
                 </div>
               </div>
 

@@ -10,15 +10,16 @@ const Movies = (props) => {
 
   let isSearch = false;
 
-  if (props['title'] !== undefined && props['title'] !== '') {
-    url += '&s=' + props['title'];
+  if (props['searchTerm']['title'] !== undefined && props['searchTerm']['title'] !== '') {
+    url += '&s=' + props['searchTerm']['title'];
     isSearch = true;
   } else {
     isSearch = false;
   }
 
-  url = props['type'] === undefined || props['type'] === '' ? url : url + '&type=' + props['type'];
-  url = props['year'] === undefined || props['year'] === '' ? url : url + '&y=' + props['year'];
+  url = props['searchTerm']['type'] === undefined || props['searchTerm']['type'] === '' ? url : url + '&type=' + props['searchTerm']['type'];
+  url = props['searchTerm']['year'] === undefined || props['searchTerm']['year'] === '' ? url : url + '&y=' + props['searchTerm']['year'];
+  url = props['searchTerm']['page'] === undefined || props['searchTerm']['page'] === '' ? url : url + '&page=' + props['searchTerm']['page'];
 
   console.log(url);
 
@@ -40,9 +41,10 @@ const Movies = (props) => {
         </div>
       ) : (
         <div className='row p-5'>
-          {data['Search']?.map((dataItem) => {
-            return <MovieCard key={dataItem['imdbID']} {...dataItem} />;
-          })}
+          {props['setTotalPages'](data['totalResults']) &&
+            data['Search']?.map((dataItem) => {
+              return <MovieCard key={dataItem['imdbID']} {...dataItem} />;
+            })}
         </div>
       )}
     </React.Fragment>
