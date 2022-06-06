@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const MovieCard = ({ Poster: poster, Title: title, Year: year }) => {
+const MovieCard = ({ Poster: poster, Title: title, Year: year }) => {
   let defaultPoster = `${process.env.PUBLIC_URL + '/no-poster.jpg'}`;
 
   // overwrite poster if 'N/A'
@@ -31,3 +31,5 @@ export const MovieCard = ({ Poster: poster, Title: title, Year: year }) => {
     </div>
   );
 };
+
+export default MovieCard;
