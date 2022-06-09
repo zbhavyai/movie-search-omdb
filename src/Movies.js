@@ -1,11 +1,13 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
 import PageNum from './PageNum';
-import { useFetch } from './useFetch';
 
 const Movies = (props) => {
   // api key is defined in file .env.development
   const apiKey = process.env.REACT_APP_OMDB_API_KEY;
+
+  const [data, setData] = useState({});
 
   let url = 'https://www.omdbapi.com/?apikey=' + apiKey;
 
@@ -22,7 +24,11 @@ const Movies = (props) => {
   url = props['searchTerm']['year'] === undefined || props['searchTerm']['year'] === '' ? url : url + '&y=' + props['searchTerm']['year'];
   url = props['searchTerm']['page'] === undefined || props['searchTerm']['page'] === '' ? url : url + '&page=' + props['searchTerm']['page'];
 
-  const { data } = useFetch(url);
+  useEffect(() => {
+    axios.get(url).then((response) => {
+      setData(response.data);
+    });
+  }, [url]);
 
   return (
     <React.Fragment>
