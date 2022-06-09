@@ -44,22 +44,22 @@ const SearchBar = (props) => {
           <div className='card-body'>
             <form onSubmit={handleSearch}>
               <div className='row'>
-                <div className='col-lg-5'>
-                  <div className='input-group mb-3'>
+                <div className='col-lg-4'>
+                  <div className='input-group'>
                     <span className='input-group-text'>Title</span>
                     <input type='text' className='form-control' id='filterTitle' onChange={(e) => handleSearchTitle(e)} value={searchTitle} onKeyDown={(e) => triggerSearchOnEnter(e)} />
                   </div>
                 </div>
 
                 <div className='col-lg-3'>
-                  <div className='input-group mb-3'>
+                  <div className='input-group'>
                     <span className='input-group-text'>Year</span>
                     <input type='number' className='form-control' id='filterYear' min='1600' max={2023} maxLength='250' onChange={(e) => handleSearchYear(e)} value={searchYear} />
                   </div>
                 </div>
 
                 <div className='col-lg-3'>
-                  <div className='input-group mb-3'>
+                  <div className='input-group'>
                     <span className='input-group-text'>Type</span>
                     <select className='form-control form-select' id='typeFilter' onChange={(e) => handleSearchType(e)} value={searchType}>
                       <option value=''>All</option>
@@ -70,9 +70,9 @@ const SearchBar = (props) => {
                   </div>
                 </div>
 
-                <div className='col-lg-1'>
-                  <div className='mb-3'>
-                    <button type='submit' className='btn btn-primary btn-block'>
+                <div className='col-lg-2'>
+                  <div className='d-grid'>
+                    <button type='submit' className='btn btn-primary'>
                       Search
                     </button>
                   </div>
