@@ -18,6 +18,8 @@ const SearchBar = (props) => {
   };
 
   const handleSearch = (e) => {
+    e.preventDefault();
+
     if (searchTitle === '') {
       window.alert('Search title is mandatory');
     }
@@ -40,41 +42,43 @@ const SearchBar = (props) => {
       <div className='col-lg-12'>
         <div className='card'>
           <div className='card-body'>
-            <div className='row'>
-              <div className='col-lg-5'>
-                <div className='input-group mb-3'>
-                  <span className='input-group-text'>Title</span>
-                  <input type='text' className='form-control' id='filterTitle' onChange={(e) => handleSearchTitle(e)} value={searchTitle} onKeyDown={(e) => triggerSearchOnEnter(e)} />
+            <form onSubmit={handleSearch}>
+              <div className='row'>
+                <div className='col-lg-5'>
+                  <div className='input-group mb-3'>
+                    <span className='input-group-text'>Title</span>
+                    <input type='text' className='form-control' id='filterTitle' onChange={(e) => handleSearchTitle(e)} value={searchTitle} onKeyDown={(e) => triggerSearchOnEnter(e)} />
+                  </div>
                 </div>
-              </div>
 
-              <div className='col-lg-3'>
-                <div className='input-group mb-3'>
-                  <span className='input-group-text'>Year</span>
-                  <input type='number' className='form-control' id='filterYear' min='1600' maxLength='250' onChange={(e) => handleSearchYear(e)} value={searchYear} />
+                <div className='col-lg-3'>
+                  <div className='input-group mb-3'>
+                    <span className='input-group-text'>Year</span>
+                    <input type='number' className='form-control' id='filterYear' min='1600' max={2023} maxLength='250' onChange={(e) => handleSearchYear(e)} value={searchYear} />
+                  </div>
                 </div>
-              </div>
 
-              <div className='col-lg-3'>
-                <div className='input-group mb-3'>
-                  <span className='input-group-text'>Type</span>
-                  <select className='form-control form-select' id='typeFilter' onChange={(e) => handleSearchType(e)} value={searchType}>
-                    <option value=''>All</option>
-                    <option value='movie'>Movie</option>
-                    <option value='series'>Series</option>
-                    <option value='episode'>Episode</option>
-                  </select>
+                <div className='col-lg-3'>
+                  <div className='input-group mb-3'>
+                    <span className='input-group-text'>Type</span>
+                    <select className='form-control form-select' id='typeFilter' onChange={(e) => handleSearchType(e)} value={searchType}>
+                      <option value=''>All</option>
+                      <option value='movie'>Movie</option>
+                      <option value='series'>Series</option>
+                      <option value='episode'>Episode</option>
+                    </select>
+                  </div>
                 </div>
-              </div>
 
-              <div className='col-lg-1'>
-                <div className='mb-3'>
-                  <button type='button' className='btn btn-primary btn-block' onClick={(e) => handleSearch(e)}>
-                    Search
-                  </button>
+                <div className='col-lg-1'>
+                  <div className='mb-3'>
+                    <button type='submit' className='btn btn-primary btn-block'>
+                      Search
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>
