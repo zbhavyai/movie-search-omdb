@@ -27,3 +27,7 @@ A frontend for searching for movies using the [OMDB API](https://www.omdbapi.com
    ```
    $ npm start
    ```
+
+## Attribution
+
+Movie logo downloaded from [Clapperboard Prosymbols](https://www.flaticon.com/free-icons/clapperboard).
