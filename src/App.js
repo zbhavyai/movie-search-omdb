@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Home';
 import Movies from './Movies';
-import SearchBar from './SearchBar';
+import NotFound from './NotFound';
 
 const App = () => {
-  const [searchTerm, setSearchTerm] = useState({});
-
   return (
-    <div className='container-fluid'>
-      <div className='row'>
-        <div className='col-12 mx-auto' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
-          <SearchBar setSearchTerm={setSearchTerm} />
-        </div>
-      </div>
-      <Movies searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/search' element={<Movies />}></Route>
+        <Route path='*' element={<NotFound />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 

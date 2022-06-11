@@ -1,30 +1,33 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import Header from './Header';
 import MovieCard from './MovieCard';
 import PageNum from './PageNum';
+import SearchBar from './SearchBar';
 
-const Movies = (props) => {
+const Movies = () => {
   // api key is defined in file .env.development
   const apiKey = process.env.REACT_APP_OMDB_API_KEY;
 
-  const [data, setData] = useState({});
-
   let url = 'https://www.omdbapi.com/?apikey=' + apiKey;
 
-  let isSearch = false;
+  const [data, setData] = useState({});
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  if (props['searchTerm']['title'] !== undefined && props['searchTerm']['title'] !== '') {
-    url += '&s=' + props['searchTerm']['title'];
-    isSearch = true;
-  } else {
-    isSearch = false;
-  }
+  const searchTitle = searchParams.get('s');
+  const searchType = searchParams.get('type');
+  const searchYear = searchParams.get('y');
+  const resultpage = searchParams.get('page');
 
-  url = props['searchTerm']['type'] === undefined || props['searchTerm']['type'] === '' ? url : url + '&type=' + props['searchTerm']['type'];
-  url = props['searchTerm']['year'] === undefined || props['searchTerm']['year'] === '' ? url : url + '&y=' + props['searchTerm']['year'];
-  url = props['searchTerm']['page'] === undefined || props['searchTerm']['page'] === '' ? url : url + '&page=' + props['searchTerm']['page'];
+  url += checkString(searchTitle) ? '&s=' + searchTitle : '';
+  url += checkString(searchType) ? '&type=' + searchType : '';
+  url += checkString(searchYear) ? '&y=' + searchYear : '';
+  url += checkString(resultpage) ? '&page=' + resultpage : '';
 
   useEffect(() => {
+    console.log('Hit url =', url);
+
     axios.get(url).then((response) => {
       setData(response.data);
     });
@@ -32,37 +35,49 @@ const Movies = (props) => {
 
   return (
     <React.Fragment>
-      <div className='row'>
-        <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
-          {isSearch === false ? (
-            <div className='card mt-4'>
-              <div className='card-body'>
-                <div className='text-secondary pt-2 text-centerr'>Hit search to get some results</div>
-              </div>
-            </div>
-          ) : data['Response'] !== 'True' ? (
-            <div className='card mt-4'>
-              <div className='card-body'>
-                <div className='text-secondary pt-2 text-centerr'>{data['Error']}</div>
-              </div>
-            </div>
-          ) : (
-            <div className='row p-5'>
-              {data['Search']?.map((dataItem) => {
-                return <MovieCard key={dataItem['imdbID']} {...dataItem} />;
-              })}
-            </div>
-          )}
-        </div>
-      </div>
+      <Header />
 
-      <div className='row'>
-        <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
-          <PageNum setSearchTerm={props['setSearchTerm']} searchTerm={props['searchTerm']} totalResults={data['totalResults']} />
+      <div className='container-fluid'>
+        <div className='row'>
+          <div className='col-12' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
+            <SearchBar />
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
+            {data['Response'] !== 'True' ? (
+              <div className='card mt-4'>
+                <div className='card-body'>
+                  <div className='text-secondary pt-2 text-centerr'>{data['Error']}</div>
+                </div>
+              </div>
+            ) : (
+              <div className='row p-5'>
+                {data['Search']?.map((dataItem) => {
+                  return <MovieCard key={dataItem['imdbID']} {...dataItem} />;
+                })}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className='row'>
+          <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
+            <PageNum setSearchParams={setSearchParams} totalResults={data['totalResults']} />
+          </div>
         </div>
       </div>
     </React.Fragment>
   );
 };
+
+function checkString(x) {
+  if (x === undefined || x === '' || x === null) {
+    return false;
+  }
+
+  return true;
+}
 
 export default Movies;

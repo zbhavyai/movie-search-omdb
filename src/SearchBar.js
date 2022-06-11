@@ -1,39 +1,29 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const SearchBar = (props) => {
-  const [searchTitle, setSearchTitle] = useState('');
-  const [searchType, setSearchType] = useState('');
-  const [searchYear, setSearchYear] = useState('');
+const SearchBar = () => {
+  const navigate = useNavigate();
 
-  const handleSearchTitle = (e) => {
-    setSearchTitle(e.target.value);
-  };
-
-  const handleSearchType = (e) => {
-    setSearchType(e.target.value);
-  };
-
-  const handleSearchYear = (e) => {
-    setSearchYear(e.target.value);
-  };
+  const [searchParams, setSearchParams] = useState({
+    s: '',
+    type: '',
+    y: '',
+    page: 1,
+  });
 
   const handleSearch = (e) => {
     e.preventDefault();
 
-    if (searchTitle === '') {
+    if (searchParams['s'] === '') {
       window.alert('Search title is mandatory');
+    } else {
+      navigate(`/search?${new URLSearchParams(searchParams).toString()}`);
     }
-
-    props.setSearchTerm({
-      title: searchTitle,
-      type: searchType,
-      year: searchYear,
-    });
   };
 
   const triggerSearchOnEnter = (e) => {
     if (e.key === 'Enter') {
-      handleSearch();
+      handleSearch(e);
     }
   };
 
@@ -47,21 +37,38 @@ const SearchBar = (props) => {
                 <div className='col-lg-4'>
                   <div className='input-group'>
                     <span className='input-group-text'>Title</span>
-                    <input type='text' className='form-control' id='filterTitle' onChange={(e) => handleSearchTitle(e)} value={searchTitle} onKeyDown={(e) => triggerSearchOnEnter(e)} />
+                    <input
+                      type='text'
+                      className='form-control'
+                      id='filterTitle'
+                      onChange={(e) => setSearchParams({ ...searchParams, s: e.target.value })}
+                      value={searchParams['s']}
+                      onKeyDown={(e) => triggerSearchOnEnter(e)}
+                      required
+                    />
                   </div>
                 </div>
 
                 <div className='col-lg-3'>
                   <div className='input-group'>
                     <span className='input-group-text'>Year</span>
-                    <input type='number' className='form-control' id='filterYear' min='1600' max={2023} maxLength='250' onChange={(e) => handleSearchYear(e)} value={searchYear} />
+                    <input
+                      type='number'
+                      className='form-control'
+                      id='filterYear'
+                      min='1600'
+                      max={2023}
+                      maxLength='250'
+                      onChange={(e) => setSearchParams({ ...searchParams, y: e.target.value })}
+                      value={searchParams['y']}
+                    />
                   </div>
                 </div>
 
                 <div className='col-lg-3'>
                   <div className='input-group'>
                     <span className='input-group-text'>Type</span>
-                    <select className='form-control form-select' id='typeFilter' onChange={(e) => handleSearchType(e)} value={searchType}>
+                    <select className='form-control form-select' id='typeFilter' onChange={(e) => setSearchParams({ ...searchParams, type: e.target.value })} value={searchParams['type']}>
                       <option value=''>All</option>
                       <option value='movie'>Movie</option>
                       <option value='series'>Series</option>
