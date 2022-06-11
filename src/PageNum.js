@@ -4,7 +4,8 @@ const PageNum = (props) => {
   const n = props['totalResults'] === undefined ? 1 : Math.ceil(props['totalResults'] / 10);
 
   const handleUpdatePage = (e) => {
-    props.setSearchTerm({ ...props['searchTerm'], page: e.target.value });
+    props['searchParams'].set('page', e.target.value);
+    props['setSearchParams'](props['searchParams']);
   };
 
   return (

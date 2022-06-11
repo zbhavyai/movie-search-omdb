@@ -64,7 +64,7 @@ const Movies = () => {
 
         <div className='row'>
           <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
-            <PageNum setSearchParams={setSearchParams} totalResults={data['totalResults']} />
+            <PageNum searchParams={searchParams} setSearchParams={setSearchParams} totalResults={data['totalResults']} />
           </div>
         </div>
       </div>
