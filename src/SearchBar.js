@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const SearchBar = () => {
   const navigate = useNavigate();
 
+  const [initialParams] = useSearchParams();
+
   const [searchParams, setSearchParams] = useState({
-    s: '',
-    type: '',
-    y: '',
+    s: initialParams.get('s') || '',
+    type: initialParams.get('type') || '',
+    y: initialParams.get('y') || '',
     page: 1,
   });
 
@@ -17,7 +19,7 @@ const SearchBar = () => {
     if (searchParams['s'] === '') {
       window.alert('Search title is mandatory');
     } else {
-      navigate(`/search?${new URLSearchParams(searchParams).toString()}`);
+      navigate(`/search?${createSearchString(searchParams)}`);
     }
   };
 
@@ -92,5 +94,32 @@ const SearchBar = () => {
     </div>
   );
 };
+
+function createSearchString(searchParams) {
+  let searchString = '';
+
+  const title = searchParams['s'];
+  const type = searchParams['type'];
+  const year = parseInt(searchParams['y']) || '';
+  const page = searchParams['page'];
+
+  if (title !== undefined && title !== null && title !== '') {
+    searchString += `s=${title}`;
+  }
+
+  if (type === 'movie' || type === 'series' || type === 'episode') {
+    searchString += `&type=${type}`;
+  }
+
+  if (Number.isInteger(year) && year > 0 && year < new Date().getFullYear() + 1) {
+    searchString += `&y=${year}`;
+  }
+
+  if (Number.isInteger(page) && page > 0) {
+    searchString += `&page=${page}`;
+  }
+
+  return searchString;
+}
 
 export default SearchBar;
