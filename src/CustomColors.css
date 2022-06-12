@@ -1,0 +1,37 @@
+.header-font {
+  font-family: 'monospace';
+}
+
+.header-icon {
+  position: relative;
+  top: -4px;
+}
+
+.darker-background {
+  background-color: #171717;
+}
+
+.custom-padding {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.search-input-background {
+  background-color: #282828;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+.card-max-width {
+  max-width: 15rem;
+  border-color: antiquewhite;
+  border-width: 5px;
+}

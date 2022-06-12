@@ -36,35 +36,31 @@ const Movies = () => {
   return (
     <React.Fragment>
       <Header />
-
-      <div className='container-fluid'>
-        <div className='row'>
-          <div className='col-12' style={{ paddingLeft: '20%', paddingRight: '20%' }}>
-            <SearchBar />
-          </div>
-        </div>
-
-        <div className='row'>
-          <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
-            {data['Response'] !== 'True' ? (
-              <div className='card mt-4'>
-                <div className='card-body'>
-                  <div className='text-secondary pt-2 text-centerr'>{data['Error']}</div>
+      <SearchBar />
+      <div className='darker-background'>
+        <div className='container custom-padding'>
+          <div className='row'>
+            <div className='col-12'>
+              {data['Response'] !== 'True' ? (
+                <div className='card mt-4'>
+                  <div className='card-body'>
+                    <div className='text-secondary pt-2 text-centerr'>{data['Error']}</div>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className='row p-5'>
-                {data['Search']?.map((dataItem) => {
-                  return <MovieCard key={dataItem['imdbID']} {...dataItem} />;
-                })}
-              </div>
-            )}
+              ) : (
+                <div className='row pb-5'>
+                  {data['Search']?.map((dataItem) => {
+                    return <MovieCard key={dataItem['imdbID']} {...dataItem} />;
+                  })}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        <div className='row'>
-          <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
-            <PageNum totalResults={data['totalResults']} />
+          <div className='row'>
+            <div className='col-12'>
+              <PageNum totalResults={data['totalResults']} />
+            </div>
           </div>
         </div>
       </div>

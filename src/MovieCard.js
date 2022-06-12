@@ -7,12 +7,12 @@ const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type }) => 
   poster = String(poster).startsWith('http') ? poster : defaultPoster;
 
   return (
-    <div className='col-md-3 col-sm-6 p-3'>
-      <div className='card' style={{ width: '15rem' }}>
+    <div className='col-md-3 col-sm-6 d-flex justify-content-center p-3'>
+      <div className='card card-max-width'>
         <img className='card-img-top' src={poster} alt='Movie poster' />
-        <div className='card-body'>
+        <div className='card-body darker-background'>
           <h6
-            className='card-title my-1'
+            className='card-title text-white my-1'
             style={{
               color: '#000000',
               textOverflow: 'ellipsis',
@@ -25,7 +25,7 @@ const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type }) => 
           >
             {title}
           </h6>
-          <p className='card-text'>{year}</p>
+          <p className='card-text text-white'>{year}</p>
           <button type='button' className='btn btn-sm btn-secondary'>
             {type}
           </button>
