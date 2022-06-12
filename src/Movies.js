@@ -13,7 +13,7 @@ const Movies = () => {
   let url = 'https://www.omdbapi.com/?apikey=' + apiKey;
 
   const [data, setData] = useState({});
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const searchTitle = searchParams.get('s');
   const searchType = searchParams.get('type');
@@ -21,9 +21,9 @@ const Movies = () => {
   const resultpage = searchParams.get('page');
 
   url += checkString(searchTitle) ? '&s=' + searchTitle : '';
-  url += checkString(searchType) ? '&type=' + searchType : '';
-  url += checkString(searchYear) ? '&y=' + searchYear : '';
-  url += checkString(resultpage) ? '&page=' + resultpage : '';
+  url += checkType(searchType) ? '&type=' + searchType : '';
+  url += checkNumber(searchYear) ? '&y=' + searchYear : '';
+  url += checkNumber(resultpage) ? '&page=' + resultpage : '';
 
   useEffect(() => {
     console.log('Hit url =', url);
@@ -64,7 +64,7 @@ const Movies = () => {
 
         <div className='row'>
           <div className='col-12' style={{ paddingLeft: '15%', paddingRight: '15%' }}>
-            <PageNum searchParams={searchParams} setSearchParams={setSearchParams} totalResults={data['totalResults']} />
+            <PageNum totalResults={data['totalResults']} />
           </div>
         </div>
       </div>
@@ -78,6 +78,24 @@ function checkString(x) {
   }
 
   return true;
+}
+
+function checkType(x) {
+  if (checkString(x)) {
+    if (x === 'movie' || x === 'series' || x === 'episode') {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function checkNumber(x) {
+  if (checkString(x)) {
+    return true;
+  }
+
+  return false;
 }
 
 export default Movies;

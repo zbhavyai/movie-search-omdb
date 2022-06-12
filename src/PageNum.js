@@ -1,11 +1,16 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const PageNum = (props) => {
   const n = props['totalResults'] === undefined ? 1 : Math.ceil(props['totalResults'] / 10);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const currentPage = searchParams.get('page');
+
   const handleUpdatePage = (e) => {
-    props['searchParams'].set('page', e.target.value);
-    props['setSearchParams'](props['searchParams']);
+    searchParams.set('page', e.target.value);
+    setSearchParams(searchParams);
   };
 
   return (
