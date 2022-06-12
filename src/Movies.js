@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import Footer from './Footer';
 import Header from './Header';
 import MovieCard from './MovieCard';
 import PageNum from './PageNum';
@@ -37,6 +38,7 @@ const Movies = () => {
     <React.Fragment>
       <Header />
       <SearchBar />
+
       <div className='darker-background'>
         <div className='container custom-padding'>
           <div className='row'>
@@ -56,14 +58,12 @@ const Movies = () => {
               )}
             </div>
           </div>
-
-          <div className='row'>
-            <div className='col-12'>
-              <PageNum totalResults={data['totalResults']} />
-            </div>
-          </div>
         </div>
+
+        <PageNum totalResults={data['totalResults']} />
       </div>
+
+      <Footer />
     </React.Fragment>
   );
 };

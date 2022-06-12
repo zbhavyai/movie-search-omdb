@@ -8,8 +8,8 @@ const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type }) => 
 
   return (
     <div className='col-md-3 col-sm-6 d-flex justify-content-center p-3'>
-      <div className='card card-max-width'>
-        <img className='card-img-top' src={poster} alt='Movie poster' />
+      <div className='card custom-card darker-background'>
+        <img className='card-img-top' src={poster} alt='Movie poster' style={{ verticalAlign: 'center' }} />
         <div className='card-body darker-background'>
           <h6
             className='card-title text-white my-1'

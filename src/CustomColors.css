@@ -1,3 +1,9 @@
+html,
+body {
+  height: 100%;
+  background-color: #171717;
+}
+
 .header-font {
   font-family: 'monospace';
 }
@@ -20,6 +26,10 @@
   background-color: #282828;
 }
 
+.form-control:focus {
+  background-color: #282828;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -30,8 +40,16 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
-.card-max-width {
+.custom-card {
   max-width: 15rem;
-  border-color: antiquewhite;
+  border-color: #ffffff;
   border-width: 5px;
+}
+
+.pagination-spacing {
+  padding-bottom: 5rem;
+}
+
+.footer-links {
+  text-decoration: none;
 }

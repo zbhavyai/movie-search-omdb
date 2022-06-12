@@ -44,7 +44,7 @@ const SearchBar = () => {
                   onChange={(e) => setSearchParams({ ...searchParams, s: e.target.value })}
                   value={searchParams['s']}
                   onKeyDown={(e) => triggerSearchOnEnter(e)}
-                  required
+                  autoFocus
                 />
               </div>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 import Header from './Header';
 import SearchBar from './SearchBar';
 
@@ -7,6 +8,7 @@ const Home = () => {
     <React.Fragment>
       <Header />
       <SearchBar />
+      <Footer />
     </React.Fragment>
   );
 };

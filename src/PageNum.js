@@ -14,19 +14,25 @@ const PageNum = (props) => {
   };
 
   return (
-    <nav aria-label='page navigation' className='pt-4'>
-      <ul className='pagination justify-content-center'>
-        {[...Array(n)].map((e, i) => {
-          return (
-            <li className='page-item' key={i}>
-              <button className='page-link' onClick={handleUpdatePage} value={i + 1}>
-                {i + 1}
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
+    <div className='container custom-padding pagination-spacing'>
+      <div className='row'>
+        <div className='col-12'>
+          <nav aria-label='page navigation' className='pt-4'>
+            <ul className='pagination justify-content-center'>
+              {[...Array(n)].map((e, i) => {
+                return (
+                  <li className='page-item' key={i}>
+                    <button className='page-link' onClick={handleUpdatePage} value={i + 1}>
+                      {i + 1}
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
   );
 };
 
