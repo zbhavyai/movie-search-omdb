@@ -22,7 +22,7 @@ const PageNum = (props) => {
               {[...Array(n)].map((e, i) => {
                 return (
                   <li className='page-item' key={i}>
-                    <button className='page-link' onClick={handleUpdatePage} value={i + 1}>
+                    <button className='page-link bg-dark text-light header-font' onClick={handleUpdatePage} value={i + 1}>
                       {i + 1}
                     </button>
                   </li>

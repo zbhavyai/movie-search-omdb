@@ -6,7 +6,7 @@ const Footer = () => {
       <div className='container'>
         <div className='float-left'>
           <a className='text-muted footer-links' href='https://github.com/zbhavyai/movie-search-omdb' target='_blank' rel='noreferrer'>
-            <i className='bi bi-github'></i> for source code
+            <i className='bi bi-github'></i> source code
           </a>
         </div>
         <div className='float-right'>

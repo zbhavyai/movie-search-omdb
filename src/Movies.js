@@ -45,8 +45,8 @@ const Movies = () => {
             <div className='col-12'>
               {data['Response'] !== 'True' ? (
                 <div className='card mt-4'>
-                  <div className='card-body'>
-                    <div className='text-secondary pt-2 text-centerr'>{data['Error']}</div>
+                  <div className='card-body bg-dark'>
+                    <div className='text-white'>{data['Error']}</div>
                   </div>
                 </div>
               ) : (

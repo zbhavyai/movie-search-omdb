@@ -58,6 +58,10 @@ input[type='number'] {
   color: #cccccc !important;
 }
 
+.info-overlay-wrapper {
+  max-height: 360px;
+}
+
 .info-overlay-wrapper:hover img {
   opacity: 0.1;
 }
