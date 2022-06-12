@@ -1,12 +1,12 @@
 {
-  "name": "Movie Search using OMDB API",
-  "short_name": "Movie Search using OMDB API",
+  "name": "OMDB Search",
+  "short_name": "OMDB Search",
   "start_url": ".",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#000000",
-  "description": "Movie Search using OMDB API",
+  "description": "OMDB Search",
   "icons": [
     {
       "src": "favicon.ico",
