@@ -53,3 +53,37 @@ input[type='number'] {
 .footer-links {
   text-decoration: none;
 }
+
+.info-overlay-wrapper:hover img {
+  opacity: 0.1;
+}
+
+.info-overlay-wrapper:hover .info-overlay {
+  opacity: 1;
+}
+
+.info-overlay {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: all 300ms;
+  padding-top: 20px;
+}
+
+.img-stretch {
+  height: 100%;
+  width: 100%;
+}
+
+.overflowing-text {
+  color: '#000000';
+  text-overflow: 'ellipsis';
+  display: '-webkit-box';
+  -webkit-line-clamp: '3';
+  line-clamp: '3';
+  -webkit-box-orient: 'vertical';
+  overflow: 'hidden';
+  text-align: 'center';
+}

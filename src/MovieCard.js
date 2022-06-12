@@ -7,29 +7,16 @@ const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type }) => 
   poster = String(poster).startsWith('http') ? poster : defaultPoster;
 
   return (
-    <div className='col-md-3 col-sm-6 d-flex justify-content-center p-3'>
-      <div className='card custom-card darker-background'>
-        <img className='card-img-top' src={poster} alt='Movie poster' style={{ verticalAlign: 'center' }} />
-        <div className='card-body darker-background'>
-          <h6
-            className='card-title text-white my-1'
-            style={{
-              color: '#000000',
-              textOverflow: 'ellipsis',
-              display: '-webkit-box',
-              WebkitLineClamp: '1',
-              lineClamp: '1',
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden',
-            }}
-          >
-            {title}
-          </h6>
-          <p className='card-text text-white'>{year}</p>
-          <button type='button' className='btn btn-sm btn-secondary'>
+    <div className='col-md-3 col-sm-6 d-flex justify-content-center p-4'>
+      <div className='card custom-card darker-background info-overlay-wrapper'>
+        <img className='card-img-top img-stretch' src={poster} alt='Movie poster' />
+        <figcaption className='card-body info-overlay text-center overflow-hidden'>
+          <h4 className='card-title text-white my-1 overflowing-text overflowing-text'>{title}</h4>
+          <h6 className='card-text text-white text-center py-3'>{year}</h6>
+          <button type='button' className='btn btn-sm btn-warning'>
             {type}
           </button>
-        </div>
+        </figcaption>
       </div>
     </div>
   );
