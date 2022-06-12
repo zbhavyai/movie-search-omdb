@@ -46,6 +46,10 @@ input[type='number'] {
   border-width: 5px;
 }
 
+.custom-card:hover {
+  border-color: #ffca2c;
+}
+
 .pagination-spacing {
   padding-bottom: 5rem;
 }
