@@ -39,6 +39,8 @@ const Movies = () => {
       <Header />
       <SearchBar />
 
+      <PageNum totalResults={data['totalResults']} bottomPadding={'1rem'} />
+
       <div className='darker-background'>
         <div className='container custom-padding'>
           <div className='row'>
@@ -60,7 +62,7 @@ const Movies = () => {
           </div>
         </div>
 
-        <PageNum totalResults={data['totalResults']} />
+        <PageNum totalResults={data['totalResults']} bottomPadding={'7rem'} />
       </div>
 
       <Footer />
