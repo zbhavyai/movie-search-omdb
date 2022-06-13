@@ -1,6 +1,6 @@
-# Movie Search using OMDB API
+# Movie Search using OMDb API
 
-A frontend for searching for movies using the [OMDB API](https://www.omdbapi.com/). Check it online at [https://omdb-web-react.netlify.app/](https://omdb-web-react.netlify.app/).
+A frontend for searching for movies using the [OMDb API](https://www.omdbapi.com/). Check it online at [https://omdb-web-react.netlify.app](https://omdb-web-react.netlify.app).
 
 ## How to build and run
 
