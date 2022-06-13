@@ -27,8 +27,6 @@ const Movies = () => {
   url += checkNumber(resultpage) ? '&page=' + resultpage : '';
 
   useEffect(() => {
-    console.log('Hit url =', url);
-
     axios.get(url).then((response) => {
       setData(response.data);
     });
