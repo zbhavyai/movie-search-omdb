@@ -105,6 +105,8 @@ const PageNum = (props) => {
                       <button className='page-link bg-warning text-dark header-font' onClick={handleUpdatePage} value={e['value']}>
                         {e['value']}
                       </button>
+                    ) : e['value'] === '..' ? (
+                      <div className='page-link bg-dark text-light header-font'>{e['value']}</div>
                     ) : (
                       <button className='page-link bg-dark text-light header-font' onClick={handleUpdatePage} value={e['value']}>
                         {e['value']}
