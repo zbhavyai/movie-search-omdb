@@ -87,14 +87,13 @@ input[type='number'] {
 }
 
 .overflowing-text {
-  color: '#000000';
-  text-overflow: 'ellipsis';
-  display: '-webkit-box';
-  -webkit-line-clamp: '3';
-  line-clamp: '3';
-  -webkit-box-orient: 'vertical';
-  overflow: 'hidden';
-  text-align: 'center';
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  /* white-space: nowrap; */
 }
 
 .float-right {

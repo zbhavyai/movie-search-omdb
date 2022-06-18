@@ -19,7 +19,7 @@ const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type }) => 
           }}
         />
         <figcaption className='card-body info-overlay text-center overflow-hidden'>
-          <h4 className='card-title text-white my-1 overflowing-text overflowing-text'>{title}</h4>
+          <h4 className='card-title text-white my-1 overflowing-text'>{title}</h4>
           <h6 className='card-text text-white text-center py-3'>{year}</h6>
           <button type='button' className='btn btn-sm btn-warning'>
             {type}
