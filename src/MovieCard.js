@@ -1,6 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type }) => {
+const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type, imdbID: imdbId }) => {
+  const navigate = useNavigate();
+
   let defaultPoster = `${process.env.PUBLIC_URL + '/no-poster.jpg'}`;
   let brokenPoster = `${process.env.PUBLIC_URL + '/no-poster.jpg'}`;
 
@@ -21,7 +24,13 @@ const MovieCard = ({ Poster: poster, Title: title, Year: year, Type: type }) => 
         <figcaption className='card-body info-overlay text-center overflow-hidden'>
           <h4 className='card-title text-white my-1 overflowing-text'>{title}</h4>
           <h6 className='card-text text-white text-center py-3'>{year}</h6>
-          <button type='button' className='btn btn-sm btn-warning'>
+          <button
+            type='button'
+            className='btn btn-sm btn-warning'
+            onClick={() => {
+              navigate(`/details/${imdbId}`);
+            }}
+          >
             {type}
           </button>
         </figcaption>
